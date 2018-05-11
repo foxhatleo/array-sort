@@ -1,6 +1,6 @@
 # ArraySort
 
-ArraySort adds methods in the Ruby `Array` class that provides sorting methods using a few sorting algorithms.
+ArraySort adds methods in the Ruby Array class that provides sorting methods using different sorting algorithms.
 
 Currently, the following sorting algorithms are implemented:
  * Bubble sort _(stable)_
@@ -9,8 +9,8 @@ Currently, the following sorting algorithms are implemented:
  * Merge sort _(stable)_
  * Quicksort _(unstable)_
 
-Note that this gem does not overwrite `Array#sort`, `Array#sort!`, `Array#sort_by`, `Array#sort_by!`. Calling those
-methods will invoke the native sorting methods, which uses in-place quicksort algorithm and is unstable.
+Note that this gem does not overwrite `Array#sort`, `Array#sort!`, `Array#sort_by`, or `Array#sort_by!`. Calling those
+methods will invoke the native sorting methods, which use in-place quicksort algorithm and are unstable.
 
 ## Installation
 
@@ -40,7 +40,7 @@ change the names of the sorting methods to the following corresponding methods o
  * Quicksort: `quick_sort`, `quick_sort!`, `quick_sort_by`, `quick_sort_by!`
  
 See the official [Ruby documentation](https://ruby-doc.org/core-2.5.0/Array.html#method-i-sort) on how to use the native
-sorting methods of `Array`.
+sorting methods of Array.
 
 For example, to sort an array using insertion sort:
 
