@@ -1,5 +1,7 @@
 # ArraySort
 
+[![Gem Version](https://badge.fury.io/rb/array-sort.svg)](https://badge.fury.io/rb/array-sort)
+
 ArraySort adds methods in the Ruby Array class that provides sorting methods using popular sorting algorithms.
 
 Currently, the following sorting algorithms are implemented:
