@@ -1,6 +1,6 @@
 # ArraySort
 
-ArraySort adds methods in the Ruby Array class that provides sorting methods using different sorting algorithms.
+ArraySort adds methods in the Ruby Array class that provides sorting methods using popular sorting algorithms.
 
 Currently, the following sorting algorithms are implemented:
  * Bubble sort _(stable)_

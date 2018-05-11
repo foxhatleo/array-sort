@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Leo Liang']
   spec.email         = ['developer@leoliang.com']
 
-  spec.summary       = 'Implementations of different sorting algorithms for Arrays.'
-  spec.description   = 'Implements sorting algorithms such as merge sort, bubble sort, insertion sort, etc. for Arrays.'
+  spec.summary       = 'Implementations of popular sorting algorithms for Arrays.'
+  spec.description   = 'Implements sorting algorithms such as merge sort, bubble sort, heap sort, etc. for Arrays.'
   spec.homepage      = 'https://github.com/foxhatleo/array-sort'
   spec.license       = 'MIT'
 

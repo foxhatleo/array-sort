@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    array-sort (0.1.0)
+    array-sort (0.1.1)
 
 GEM
   remote: https://rubygems.org/
