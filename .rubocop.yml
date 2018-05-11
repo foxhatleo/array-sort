@@ -1,0 +1,11 @@
+Style/Documentation:
+  Enabled: false
+
+#Naming/FileName:
+#  Enabled: true
+
+Metrics/LineLength:
+  Max: 120
+
+Layout/TrailingWhitespace:
+  Enabled: false
