@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class HelperTest < Minitest::Test
+class SwapTest < Minitest::Test
   def test_version_number
     assert_match(/\A\d+\.\d+\.\d+\z/, ::ArraySort::VERSION)
   end
@@ -50,9 +50,7 @@ class HelperTest < Minitest::Test
     assert_raises(FrozenError) { [1, 2, 3].freeze.swap 0, 1 }
   end
 
-  def test_array_gains_only_public_methods
-    added = Array.private_instance_methods(false) - [].method(:initialize).owner.private_instance_methods(false)
-
-    assert_empty added.grep(/sort|heap|sift|swap|merge|clone/)
+  def test_array_gains_no_private_methods
+    assert_empty ArraySort::ArrayMethods.private_instance_methods(false)
   end
 end

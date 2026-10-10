@@ -6,9 +6,28 @@ All notable changes to this project are documented in this file. The format is b
 
 ## [1.0.0] - 2026-10-10
 
-The public API (`*_sort`, `*_sort!`, `*_sort_by`, `*_sort_by!` and `Array#swap`) is unchanged, but several of its
-behaviors were wrong and have been fixed, which is why this is a major release. If you relied on any of the old
-behavior listed under "Changed", please check your code.
+The five original algorithms keep their public API (`*_sort`, `*_sort!`, `*_sort_by`, `*_sort_by!` and `Array#swap`),
+and `require 'array/sort'` still adds them to every Array. But several behaviors were wrong and have been fixed, and
+the gem grows from 5 algorithms to 22, which is why this is a major release. If you relied on any of the old behavior
+listed under "Changed", please check your code.
+
+### Added
+
+- 17 new algorithms, each with the same four methods as the originals:
+  - Simple sorts: binary insertion, cocktail shaker, comb, cycle, gnome, odd-even, pancake and selection sort.
+  - Efficient comparison sorts: shell sort, smoothsort, tree sort (AVL) and tournament sort.
+  - Hybrid sorts: introsort and Timsort.
+  - Distribution sorts, which sort by Integer (or, for bucket sort, real number) keys without comparing: counting,
+    radix (LSD) and bucket sort.
+- `require 'array_sort'`, which loads the gem without changing Array. From there, use `using ArraySort::Refinements`
+  to add the methods to Array in one file only, or module functions such as `ArraySort.merge_sort(array)`.
+- `ArraySort.trace(:algorithm, array)`, which records every comparison and write an algorithm makes.
+- `ArraySort.algorithms` and `ArraySort.algorithm(name)`, describing each algorithm's stability and complexity.
+- RBS type signatures in `sig/`, generated from the algorithm registry.
+- `rake bench`, which benchmarks every algorithm against `Array#sort`.
+- GitHub Actions CI testing Ruby 3.3, 3.4 and 4.0, and running RuboCop and RBS validation.
+- A Release workflow that publishes to RubyGems.org with trusted publishing, and Dependabot for dependency updates.
+- RubyGems metadata (source, changelog and issue tracker links) and MFA requirement for publishing.
 
 ### Fixed
 
@@ -24,7 +43,7 @@ behavior listed under "Changed", please check your code.
 
 ### Changed
 
-- Ruby 3.2 or later is required.
+- Ruby 3.3 or later is required.
 - Bang methods check for a frozen receiver before doing any work, so they raise `FrozenError` even if the array is
   already sorted, and without calling the block.
 - Bang methods leave the receiver untouched if the comparison raises partway through, like `Array#sort!`.
@@ -36,12 +55,10 @@ behavior listed under "Changed", please check your code.
 - The private helper methods the gem used to add to `Array` (`sort_compare`, `become_clone_of`, `heapify`,
   `sift_down` and others) were removed. The algorithms now live in the `ArraySort` module and no longer add anything
   to `Array` beyond the public sort methods and `swap`.
-- Enumerators returned by the `_by` methods now report their `size`.
-
-### Added
-
-- GitHub Actions CI testing Ruby 3.2, 3.3, 3.4 and 4.0, and running RuboCop.
-- RubyGems metadata (source, changelog and issue tracker links) and MFA requirement for publishing.
+- The Array methods are now defined in `ArraySort::ArrayMethods`, which `require 'array/sort'` includes into Array,
+  instead of directly on Array. The files under `lib/array/sort/` other than `lib/array/sort.rb` itself are gone, so
+  `require 'array/sort'` is the only way to load the patch.
+- Enumerators returned by the `_by` methods now report their `size`, and work under the refinement too.
 
 ### Removed
 

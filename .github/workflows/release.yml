@@ -1,0 +1,30 @@
+# Publishes the gem to RubyGems.org with trusted publishing (no API key needed), then tags the release.
+#
+# One-time setup on rubygems.org: array-sort > Trusted publishers > add a GitHub Actions publisher with
+# repository foxhatleo/array-sort, workflow release.yml and environment release.
+#
+# To release: bump ArraySort::VERSION and the CHANGELOG, merge to master, then run this workflow from the Actions tab.
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Push gem to RubyGems.org
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: release
+    permissions:
+      id-token: write # trusted publishing
+      contents: write # `rake release` pushes the version tag
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ruby
+          bundler-cache: true
+      - run: bundle exec rake test
+      - uses: rubygems/release-gem@v1
