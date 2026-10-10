@@ -3,7 +3,8 @@
 require 'test_helper'
 require_relative 'sort_test_base'
 
-class MergeSortTest < Minitest::Test
+class BubbleSortTest < Minitest::Test
   include SortTestBase
-  sort_test 'merge'
+
+  sort_test 'bubble', stable: true, quadratic: true
 end

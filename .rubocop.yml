@@ -1,11 +1,47 @@
-Style/Documentation:
-  Enabled: false
+plugins:
+  - rubocop-minitest
+  - rubocop-rake
 
-#Naming/FileName:
-#  Enabled: true
+AllCops:
+  TargetRubyVersion: 3.2
+  NewCops: enable
+  SuggestExtensions: false
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
 
-Layout/TrailingWhitespace:
-  Enabled: false
+# The sorting algorithms are written as plain loops over indices to stay close to their textbook form, which the
+# size cops penalise. Tests are long and repetitive by nature.
+Metrics/AbcSize:
+  Exclude:
+    - lib/array/sort/*_sort.rb
+    - test/**/*
+Metrics/MethodLength:
+  Exclude:
+    - lib/array/sort/*_sort.rb
+    - test/**/*
+Metrics/ModuleLength:
+  Exclude:
+    - test/**/*
+Metrics/ParameterLists:
+  Exclude:
+    - lib/array/sort/*_sort.rb
+
+Minitest/MultipleAssertions:
+  Max: 5
+
+Naming/FileName:
+  Exclude:
+    - array-sort.gemspec
+Naming/MethodParameterName:
+  AllowedNames: [a, b, c, i, j]
+
+# Each algorithm file defines the algorithm module and the Array methods that expose it, side by side. Array itself
+# is documented by Ruby, and test classes document themselves.
+Style/Documentation:
+  Exclude:
+    - lib/array/sort/*.rb
+    - test/**/*
+Style/OneClassPerFile:
+  Exclude:
+    - lib/array/sort/*.rb

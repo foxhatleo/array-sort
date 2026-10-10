@@ -3,7 +3,8 @@
 require 'test_helper'
 require_relative 'sort_test_base'
 
-class SortTest < Minitest::Test
+class InsertionSortTest < Minitest::Test
   include SortTestBase
-  sort_test 'bubble'
+
+  sort_test 'insertion', stable: true, quadratic: true
 end
