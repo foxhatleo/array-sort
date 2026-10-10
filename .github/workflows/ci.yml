@@ -5,6 +5,9 @@ on:
     branches: [master]
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   test:
     name: Ruby ${{ matrix.ruby }}
@@ -13,9 +16,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: ['3.2', '3.3', '3.4', '4.0']
+        ruby: ['3.3', '3.4', '4.0']
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
@@ -23,12 +28,16 @@ jobs:
       - run: bundle exec rake test
 
   lint:
+    name: RuboCop and RBS
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '4.0'
           bundler-cache: true
       - run: bundle exec rake rubocop
+      - run: bundle exec rake rbs

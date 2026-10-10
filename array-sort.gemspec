@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'lib/array/sort/version'
+require_relative 'lib/array_sort/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'array-sort'
@@ -9,11 +9,12 @@ Gem::Specification.new do |spec|
   spec.email         = ['developer@leoliang.com']
 
   spec.summary       = 'Implementations of popular sorting algorithms for Arrays.'
-  spec.description   = 'Adds bubble sort, heap sort, insertion sort, merge sort and quicksort to Array, ' \
-                       'with the same interface as Array#sort, #sort!, #sort_by and #sort_by!.'
+  spec.description   = '22 sorting algorithms (merge sort, quicksort, Timsort, introsort, radix sort, smoothsort and ' \
+                       'more) with the same interface as Array#sort, #sort!, #sort_by and #sort_by!, available as ' \
+                       'Array methods, refinements or module functions, plus a tracer to watch them work.'
   spec.homepage      = 'https://github.com/foxhatleo/array-sort'
   spec.license       = 'MIT'
-  spec.required_ruby_version = '>= 3.2'
+  spec.required_ruby_version = '>= 3.3'
 
   spec.metadata = {
     'source_code_uri' => spec.homepage,
@@ -22,6 +23,6 @@ Gem::Specification.new do |spec|
     'rubygems_mfa_required' => 'true'
   }
 
-  spec.files = Dir['lib/**/*.rb', 'CHANGELOG.md', 'LICENSE.txt', 'README.md']
+  spec.files = Dir['lib/**/*.rb', 'sig/**/*.rbs', 'CHANGELOG.md', 'LICENSE.txt', 'README.md']
   spec.require_paths = ['lib']
 end
