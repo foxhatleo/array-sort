@@ -3,7 +3,8 @@
 require 'test_helper'
 require_relative 'sort_test_base'
 
-class InsertionSortTest < Minitest::Test
+class QuickSortTest < Minitest::Test
   include SortTestBase
-  sort_test 'insertion'
+
+  sort_test 'quick', stable: false
 end
